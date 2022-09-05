@@ -11,14 +11,7 @@ resource "aws_instance" "my_webserver" {
   instance_type = "t2.micro"
   ami           = "ami-090fa75af13c156b4"
   vpc_security_group_ids = [aws_security_group.my_webserver.id]
-  user_data = <<EOF
-#!/bin/bash
-yum -y update
-yum -y install httpd
-echo "<h2>WebServer</h2><br>Build by Terraform!"  >  /var/www/html/index.html
-sudo service httpd start
-chkconfig httpd on
-EOF
+  user_data = file("install-apache.sh")
   tags = {
     Name = "Web server build by Terraform"
     Owner = "vinto"
