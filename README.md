@@ -4,4 +4,3 @@
 * aws-ec2-webserver - запуск apache + security groups
 * aws-tf-templates - пример с шаблонизацией
 * aws-tf-dynamic-security-groups - пример с dynamic ingress
-* 
