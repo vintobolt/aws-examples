@@ -6,3 +6,4 @@
 * aws-tf-dynamic-security-groups - пример с dynamic ingress
 * lifecycles-elastic-ip - пример с лайфтаймами и elastic ip
 * tf-output - пример вывода данных после выполнения
+* resource-creation-order - порядок создания ресурсов
