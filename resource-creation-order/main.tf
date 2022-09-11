@@ -35,8 +35,38 @@ resource "aws_security_group" "servers" {
   }
 }
 
-resource "aws_instance" "webserver" {
+resource "aws_instance" "webserver_0" {
     instance_type = "t2.micro"
     ami           = "ami-090fa75af13c156b4"
+    vpc_security_group_ids = [aws_security_group.servers.id]
+    user_data = templatefile("install-apache.sh.tpl", {
+      f_name = "Oleksandr",
+      l_name = "Zatserklianyi",
+      names = ["Vintobolt", "Aniyoole", "Kasteel"]
+    })
 
+    tags = {
+      Name = "webserver_0"
+      Owner = "Vintobolt"
+    }
+
+    depends_on = [
+      aws_instance.webserver_1
+    ]
+}
+
+resource "aws_instance" "webserver_1" {
+    instance_type = "t2.micro"
+    ami           = "ami-090fa75af13c156b4"
+    vpc_security_group_ids = [aws_security_group.servers.id]
+    user_data = templatefile("install-apache.sh.tpl", {
+      f_name = "Oleksandr",
+      l_name = "Zatserklianyi",
+      names = ["Vintobolt", "Aniyoole"]
+    })
+
+    tags = {
+      Name = "webserver_1"
+      Owner = "Vintobolt"
+    }
 }
